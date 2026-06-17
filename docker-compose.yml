@@ -1,0 +1,16 @@
+services:
+  apache_solr_app:
+    image: solr:9
+    container_name: apache_solr_app
+    user: "8983"
+    ports:
+      - "8983:8983"
+    networks:
+      - apache_solr_net
+    volumes:
+      - ./conf:/conf/viewer
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+networks:
+  apache_solr_net:
+    driver: bridge
